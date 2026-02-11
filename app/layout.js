@@ -2,6 +2,8 @@ import { Poppins, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import PdfPopup from "./components/pdf-popup";
+import StickyPdfButton from "./components/sticky-pdf-button";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,6 +28,8 @@ export default function RootLayout({ children }) {
       <body className={`${poppins.variable} ${manrope.variable} antialiased`}>
         <Navbar />
         {children}
+        <PdfPopup />
+        <StickyPdfButton />
         <Footer />
       </body>
     </html>

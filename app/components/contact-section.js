@@ -23,8 +23,8 @@ const ContactSection = () => {
                                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                                     <polyline points="22,6 12,13 2,6" />
                                 </svg>
-                                <a href="mailto:influencerconnectai@hotmail.com" style={{ color: 'var(--white)', fontWeight: 500 }}>
-                                    influencerconnectai@hotmail.com
+                                <a href="mailto:raghav@influencer-connect.com" style={{ color: 'var(--white)', fontWeight: 500 }}>
+                                    raghav@influencer-connect.com
                                 </a>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)' }}>
@@ -42,22 +42,57 @@ const ContactSection = () => {
                         <form
                             className="ic-card"
                             style={{ padding: '32px' }}
-                            onSubmit={(e) => {
+                            onSubmit={async (e) => {
                                 e.preventDefault();
-                                alert("Thanks! We'll be in touch.");
+                                const formData = {
+                                    name: e.target.name.value,
+                                    email: e.target.email.value,
+                                    message: e.target.message.value,
+                                    _subject: "New Submission from Influencer Connect Website",
+                                    _captcha: "false"
+                                };
+
+                                const btn = e.target.querySelector('button[type="submit"]');
+                                const originalText = btn.innerText;
+                                btn.innerText = 'Sending...';
+                                btn.disabled = true;
+
+                                try {
+                                    const response = await fetch('https://formsubmit.co/ajax/raghav@influencer-connect.com', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        },
+                                        body: JSON.stringify(formData),
+                                    });
+
+                                    if (response.ok) {
+                                        alert("Thanks! We'll be in touch shortly.");
+                                        e.target.reset();
+                                    } else {
+                                        alert("Something went wrong. Please try again.");
+                                    }
+                                } catch (error) {
+                                    console.error(error);
+                                    alert("Error sending message.");
+                                } finally {
+                                    btn.innerText = originalText;
+                                    btn.disabled = false;
+                                }
                             }}
                         >
                             <div className="form-group">
-                                <label className="form-label">Name</label>
-                                <input type="text" className="ic-input" placeholder="Your Name" required />
+                                <label className="form-label" htmlFor="name">Name</label>
+                                <input type="text" id="name" name="name" className="ic-input" placeholder="Your Name" required />
                             </div>
                             <div className="form-group">
-                                <label className="form-label">Email</label>
-                                <input type="email" className="ic-input" placeholder="your@email.com" required />
+                                <label className="form-label" htmlFor="email">Email</label>
+                                <input type="email" id="email" name="email" className="ic-input" placeholder="your@email.com" required />
                             </div>
                             <div className="form-group">
-                                <label className="form-label">Message</label>
-                                <textarea className="ic-input" rows={4} placeholder="Tell us about your brand..." required style={{ resize: 'vertical' }} />
+                                <label className="form-label" htmlFor="message">Message</label>
+                                <textarea id="message" name="message" className="ic-input" rows={4} placeholder="Tell us about your brand..." required style={{ resize: 'vertical' }} />
                             </div>
                             <button type="submit" className="btn-primary" style={{ width: '100%' }}>
                                 Send Message

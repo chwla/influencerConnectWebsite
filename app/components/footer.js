@@ -13,6 +13,7 @@ const Footer = () => {
                             <span style={{ color: 'var(--accent-light)' }}>Connect</span>
                         </span>
                         <span style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>© Influencer Connect Media</span>
+                        <a href="mailto:raghav@influencer-connect.com" style={{ color: 'var(--text-secondary)', fontSize: '13px', textDecoration: 'none' }}>raghav@influencer-connect.com</a>
                     </div>
 
                     <nav style={{ display: 'flex', gap: '24px' }}>
