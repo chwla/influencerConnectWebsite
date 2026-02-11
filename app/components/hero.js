@@ -39,15 +39,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="partners-bar">
-        <div className="partners-inner">
-          <span className="partners-label">Trusted Partners</span>
-          <div className="partner-logo-placeholder">Logo 1</div>
-          <div className="partner-logo-placeholder">Logo 2</div>
-          <div className="partner-logo-placeholder">Logo 3</div>
-          <div className="partner-logo-placeholder">Logo 4</div>
-        </div>
-      </div>
+
     </section>
   );
 };
