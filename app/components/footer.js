@@ -20,7 +20,6 @@ const Footer = () => {
                         <Link href="/about" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>About</Link>
                         <Link href="/services" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Services</Link>
                         <Link href="/contact" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Contact</Link>
-                        <Link href="/ethics" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Ethics</Link>
                     </nav>
                 </div>
             </div>
